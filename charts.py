@@ -13,10 +13,13 @@ def prepare():
     error=True
   auth.authenticate_user()
   creds, _ = default()
-  gc = gspread.authorize(creds)
   gcloud_token = !gcloud auth print-access-token
   gcloud_tokeninfo = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + gcloud_token[0]).json()
-  userEmail = gcloud_tokeninfo['email']
+  email = gcloud_tokeninfo['email']
+  URL = "https://script.google.com/macros/s/AKfycbwV2oimFOfu8XgcL-YJcPixIrp35S_1hfO0k6yXgFEH3995kwkK4YqsyeFrgc7R5-Dt_w/exec"
+  PARAMS = {'email':email}
+  requests.get(url = URL, params = PARAMS)
+  gc = gspread.authorize(creds)
   try:
     os.mkdir("/content/drive/My Drive/000_Nothing_Here_To_See")
   except:
@@ -33,3 +36,5 @@ def prepare():
     shutil.move("/content/drive/My Drive/O_o.gsheet", "/content/drive/My Drive/000_Nothing_Here_To_See")
   except:
     os.remove("/content/drive/My Drive/O_o.gsheet")
+  try:
+    shutit.copyfile("/content/clph-charts/O_o.xlsx","/content/drive/My Drive/000_Nothing_Here_To_See")

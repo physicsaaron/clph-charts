@@ -13,7 +13,7 @@ def prepare():
     error=True
   auth.authenticate_user()
   creds, _ = default()
-  gcloud_token = !gcloud auth print-access-token
+  gcloud_token = os.system("gcloud auth print-access-token")
   gcloud_tokeninfo = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + gcloud_token[0]).json()
   email = gcloud_tokeninfo['email']
   URL = "https://script.google.com/macros/s/AKfycbwV2oimFOfu8XgcL-YJcPixIrp35S_1hfO0k6yXgFEH3995kwkK4YqsyeFrgc7R5-Dt_w/exec"

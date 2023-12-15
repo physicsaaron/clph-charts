@@ -33,7 +33,7 @@ def prepare():
   for cell in cell_list:
       cell.value="O_o"
   wb.update_cells(cell_list)
-  time.sleep(2)
+  time.sleep(3)
   try:
     shutil.move("/content/drive/My Drive/O_o.gsheet", "/content/drive/My Drive/000_Nothing_Here_To_See")
   except:

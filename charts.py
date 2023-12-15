@@ -1,6 +1,7 @@
 from google.colab import drive, auth
 import gspread
 from google.auth import default
+import requests
 import os
 import shutil
 import time
@@ -13,6 +14,9 @@ def prepare():
   auth.authenticate_user()
   creds, _ = default()
   gc = gspread.authorize(creds)
+  gcloud_token = !gcloud auth print-access-token
+  gcloud_tokeninfo = requests.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + gcloud_token[0]).json()
+  userEmail = gcloud_tokeninfo['email']
   try:
     os.mkdir("/content/drive/My Drive/000_Nothing_Here_To_See")
   except:

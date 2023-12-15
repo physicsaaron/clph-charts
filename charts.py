@@ -38,3 +38,5 @@ def prepare():
     os.remove("/content/drive/My Drive/O_o.gsheet")
   try:
     shutit.copyfile("/content/clph-charts/O_o.xlsx","/content/drive/My Drive/000_Nothing_Here_To_See")
+  except:
+    error=True
